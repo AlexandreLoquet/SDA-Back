@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -26,6 +27,9 @@ public class Animaux {
 
     @Column(name="isAdopte")
     private boolean isAdopte;
+
+    @Column(name="dateAdopte")
+    private Date dateAdoption;
 
     @ManyToOne
     @JoinColumn(name="sda_id")

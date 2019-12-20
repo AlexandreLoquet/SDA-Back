@@ -7,6 +7,8 @@ import com.spring.rest.repositories.AnimauxRepository;
 import com.spring.rest.repositories.SdaRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,7 @@ public class AnimauxController {
 
 
     @GetMapping("/all")
-    List<Animaux> allAnimaux() { return AnimauxRepository.findAll(); }
+    public List<Animaux> allAnimaux() { return AnimauxRepository.findAll(); }
 
 
     @GetMapping("/sda/{sda}")
@@ -42,6 +44,7 @@ public class AnimauxController {
         //Les 2 Lignes suivante seront à supprimer lors de la mise en place du selecteur sda et adopter
         a.setAdopte(false);
         a.setSda(sda.get());
+        a.setDateAdoption(Date.from(Instant.now()));
 
         return AnimauxRepository.save(a);
     }
