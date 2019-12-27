@@ -39,13 +39,8 @@ public class AnimauxController {
 
     @PostMapping("/new")
     Animaux newAnimal(@RequestBody Animaux a) {
-
-        Optional<Sda> sda = sdaRepository.findById((long) 1);
-        //Les 2 Lignes suivante seront à supprimer lors de la mise en place du selecteur sda et adopter
         a.setAdopte(false);
-        a.setSda(sda.get());
-        a.setDateAdoption(Date.from(Instant.now()));
-
+        System.out.println(a);
         return AnimauxRepository.save(a);
     }
 
@@ -62,8 +57,5 @@ public class AnimauxController {
             ani.setAdopte(newAnimaux.isAdopte());
             return AnimauxRepository.save(ani);
     }
-
-
-
 
 }
