@@ -3,13 +3,18 @@ package com.spring.rest.controllers;
 
 import com.spring.rest.entities.Animaux;
 import com.spring.rest.entities.Sda;
+import com.spring.rest.entities.Users;
 import com.spring.rest.repositories.AnimauxRepository;
 import com.spring.rest.repositories.SdaRepository;
+import com.spring.rest.repositories.UsersRepository;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.NameList;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.Date.*;
 
 @RestController
 @RequestMapping("/animaux")
@@ -20,9 +25,12 @@ public class AnimauxController {
 
     private SdaRepository sdaRepository;
 
-    public AnimauxController(AnimauxRepository animauxRepository, SdaRepository sdaRepository) {
+    private UsersRepository usersRepository;
+
+    public AnimauxController(AnimauxRepository animauxRepository, SdaRepository sdaRepository, UsersRepository usersRepository) {
         AnimauxRepository = animauxRepository;
         this.sdaRepository = sdaRepository;
+        this.usersRepository = usersRepository;
     }
 
 
@@ -53,9 +61,15 @@ public class AnimauxController {
     Animaux modifyAnimaux(@RequestBody Animaux newAnimaux, @PathVariable Long id) {
         Optional<Animaux> animaux = AnimauxRepository.findById(id);
 
+        Optional<Users> users = usersRepository.findById((long) 1);
+
             Animaux ani = animaux.get();
+            Users user1 = users.get();
             ani.setNom(newAnimaux.getNom());
-            ani.setAdopte(newAnimaux.isAdopte());
+            ani.setAdopte(true);
+            //Je force l'adoptant à 1, à modifier par la suite
+            ani.setAdoptant(user1);
+            ani.setDateAdoption(from(Instant.now()));
             return AnimauxRepository.save(ani);
     }
 
