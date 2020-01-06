@@ -23,5 +23,8 @@ public class Users {
     @Column(name="prenom")
     private String prenom;
 
+    @Column(name="mdp")
+    private String mdp;
+
 
 }

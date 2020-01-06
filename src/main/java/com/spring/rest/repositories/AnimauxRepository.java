@@ -21,5 +21,8 @@ public interface AnimauxRepository extends JpaRepository<Animaux, Long> {
     @Query("select a from Animaux a where a.types = :types")
     List<Animaux> findAnimauxByTypes(@Param("types") String types);
 
+    @Query(value = "select a from Animaux a where a.isAdopte = FALSE")
+    List<Animaux> findFreeAnimaux();
+
 
 }

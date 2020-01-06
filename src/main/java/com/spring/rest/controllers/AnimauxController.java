@@ -6,9 +6,8 @@ import com.spring.rest.entities.Sda;
 import com.spring.rest.repositories.AnimauxRepository;
 import com.spring.rest.repositories.SdaRepository;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.NameList;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +36,12 @@ public class AnimauxController {
     @GetMapping("/{types}")
     List<Animaux> AnimauxByTypes(@PathVariable String types) { return AnimauxRepository.findAnimauxByTypes(types); }
 
+    @GetMapping("/free")
+    List<Animaux> FreeAnimaux() { return AnimauxRepository.findFreeAnimaux(); }
+
     @PostMapping("/new")
     Animaux newAnimal(@RequestBody Animaux a) {
         a.setAdopte(false);
-        System.out.println(a);
         return AnimauxRepository.save(a);
     }
 
