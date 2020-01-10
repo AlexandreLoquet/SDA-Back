@@ -57,20 +57,11 @@ public class AnimauxController {
     void deleteAnimaux(@PathVariable Long id){AnimauxRepository.deleteById(id);}
 
 
-    @PutMapping("/modify/{id}")
-    Animaux modifyAnimaux(@RequestBody Animaux newAnimaux, @PathVariable Long id) {
-        Optional<Animaux> animaux = AnimauxRepository.findById(id);
-
-        Optional<Users> users = usersRepository.findById((long) 1);
-
-            Animaux ani = animaux.get();
-            Users user1 = users.get();
-            ani.setNom(newAnimaux.getNom());
-            ani.setAdopte(true);
-            //Je force l'adoptant à 1, à modifier par la suite
-            ani.setAdoptant(user1);
-            ani.setDateAdoption(from(Instant.now()));
-            return AnimauxRepository.save(ani);
+    @PutMapping("/adopt/{id}")
+    Animaux modifyAnimaux(@RequestBody Animaux a) {
+        a.setAdopte(true);
+        a.setDateAdoption(from(Instant.now()));
+        return AnimauxRepository.save(a);
     }
 
 }
