@@ -21,7 +21,7 @@ public class Sda {
 
 
     @Column(name="nom")
-    private String nom;
+    private String name;
 
 
 

@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Animaux {
+public class Animals {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -20,16 +20,16 @@ public class Animaux {
     private Long id;
 
     @Column(name="nom")
-    private String nom;
+    private String name;
 
     @Column(name="type")
     private String types;
 
     @Column(name="isAdopte")
-    private boolean isAdopte;
+    private boolean isAdopt;
 
     @Column(name="dateAdopte")
-    private Date dateAdoption;
+    private Date AdoptionDate;
 
     @ManyToOne
     @JoinColumn(name="sda_id")
@@ -37,6 +37,6 @@ public class Animaux {
 
     @ManyToOne
     @JoinColumn(name="adoptant_id")
-    private Users adoptant;
+    private Users carer;
 
 }

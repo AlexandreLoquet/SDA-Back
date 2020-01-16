@@ -18,13 +18,13 @@ public class Users {
     private Long id;
 
     @Column(name="nom")
-    private String nom;
+    private String lastname;
 
     @Column(name="prenom")
-    private String prenom;
+    private String firstname;
 
     @Column(name="mdp")
-    private String mdp;
+    private String password;
 
 
 }
