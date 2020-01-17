@@ -45,6 +45,9 @@ public class AnimalsController {
     @GetMapping("/free")
     List<Animals> FreeAnimals() { return animalsRepository.findFreeAnimals(); }
 
+    @GetMapping("/types")
+    List<String> typesOfAnimals() { return animalsRepository.findTypesOfAnimals(); }
+
     @PostMapping("/new")
     Animals newAnimal(@RequestBody Animals a) {
         a.setAdopt(false);

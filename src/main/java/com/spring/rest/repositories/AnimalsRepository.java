@@ -24,4 +24,7 @@ public interface AnimalsRepository extends JpaRepository<Animals, Long> {
     @Query(value = "select a from Animals a where a.isAdopt = FALSE")
     List<Animals> findFreeAnimals();
 
+    @Query(value = "select distinct a.types from Animals a")
+    List<String> findTypesOfAnimals();
+
 }
