@@ -3,10 +3,7 @@ package com.spring.rest.controllers;
 
 import com.spring.rest.entities.Users;
 import com.spring.rest.repositories.UsersRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +18,9 @@ public class UsersController {
 
     @GetMapping("/all")
     List<Users> allUsers() { return usersRepository.findAll(); }
+
+    @PostMapping("/new")
+    Users newUser(@RequestBody Users u) {
+        return usersRepository.save(u);
+    }
 }
